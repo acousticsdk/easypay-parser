@@ -79,7 +79,8 @@ const easyPayGetToken = async () => {
         await browser.close();
         await requestEasyPayToken(login, password, splitedData[1]);
       } else {
-        throw new Error(`2Captcha Status is Failed: ${splitedData}`);
+        await browser.close();
+        await requestEasyPayToken(login, password, null);
       };
     } else {
       await browser.close();
