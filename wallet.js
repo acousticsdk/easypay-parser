@@ -81,6 +81,7 @@ const easyPayGetToken = async () => {
       } else {
         await browser.close();
         await requestEasyPayToken(login, password, null);
+        console.log(splitedData);
       };
     } else {
       await browser.close();
