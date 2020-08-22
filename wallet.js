@@ -55,7 +55,7 @@ const requestEasyPayToken = async (login, password, safetyData) => {
     console.log('EasyPay, at:', new Date().toLocaleString('ru-RU', {timeZone: 'Europe/Kiev'}));
   } catch(err) {
     console.log(err, err.response);
-  };
+  }
 };
 
 const easyPayGetToken = async () => {
@@ -68,11 +68,11 @@ const easyPayGetToken = async () => {
     await page.type('input[id="sign-in-phone"]', login);
     await page.type('input[id="password"]', password);
     await page.click('button[class="button relative"]');
-    await new Promise(r => setTimeout(r, 5000));
+    await new Promise(r => setTimeout(r, 10000));
     if (await page.$('body > div > div:nth-child(2) > iframe') !== null) {
       const recaptcha = await page.evaluate('document.querySelector("body > div > div:nth-child(2) > iframe").getAttribute("src")');
       const twoCaptcha = await axios.get(`https://2captcha.com/in.php?key=963da7930c5487d24a126bfde6a163a8&method=userrecaptcha&googlekey=${queryString.parse(recaptcha).k}&pageurl=https://easypay.ua/ua`);
-      await new Promise(r => setTimeout(r, 61000));
+      await new Promise(r => setTimeout(r, 120000));
       const twoCaptchaResponse = await axios.get(`https://2captcha.com/res.php?key=963da7930c5487d24a126bfde6a163a8&action=get&id=${twoCaptcha.data.split('|')[1]}`); 
       const splitedData = twoCaptchaResponse.data.split('|');
       if (splitedData[0] === 'OK') {
