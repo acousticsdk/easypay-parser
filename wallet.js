@@ -93,7 +93,7 @@ const easyPayGetToken = async () => {
 
 
 
-schedule.scheduleJob('*/20 * * * *', async () => {
+schedule.scheduleJob('*/17 * * * *', async () => {
   await easyPayGetToken();
 });
 
